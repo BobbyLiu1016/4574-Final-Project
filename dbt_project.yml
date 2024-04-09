@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: '4574_final_project_OnlinePlants_business'
+name: 'Final_Project_OnlinePlants_Business'
 version: '1.0.0'
 config-version: 2
 
@@ -36,7 +36,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  4574_final_project_OnlinePlants_business:
+  Final_Project_OnlinePlants_Business:
     base:
       materialized: view
       +schema: BASE
@@ -46,4 +46,7 @@ models:
     analytics:
       materialized: table
       +schema: ANALYTICS
+    core:
+      materialized: table
+      +schema: CORE
 

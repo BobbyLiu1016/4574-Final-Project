@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: google_drive
+    database: LOAD
+    schema: google_drive
+    tables:
+      - name: expense
+   
