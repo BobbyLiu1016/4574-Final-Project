@@ -6,4 +6,15 @@ sources:
     schema: google_drive
     tables:
       - name: expense
-   
+      - name: hr_joins
+      - name: hr_quits
+      - name: returns
+  - name: web_schema
+    database: LOAD
+    schema: snowflake_columbia_web_schema
+    tables:
+      - name: item_views 
+      - name: orders
+      - name: page_views
+      - name: sessions
+    
