@@ -1,8 +1,4 @@
 SELECT
-    j._FILE,
-    j._LINE,
-    j._MODIFIED_TS,
-    j._FIVETRAN_SYNCED_TS,
     j.EMPLOYEE_ID,
     j.HIRE_DATE_CLEANED,
     j.NAME,
