@@ -1,8 +1,4 @@
 SELECT
-    _FILE,
-    _LINE,
-    _MODIFIED_TS,
-    _FIVETRAN_SYNCED_TS,
     EMPLOYEE_ID,
     NAME,
     CITY,
