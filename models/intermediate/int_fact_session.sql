@@ -23,7 +23,7 @@ quantity_cte AS (
         SUM(ADD_TO_CART_QUANTITY) AS TOTAL_QUANTITY_ADDED, 
         SUM(REMOVE_FROM_CART_QUANTITY) AS TOTAL_QUANTITY_REMOVED, 
         (SUM(ADD_TO_CART_QUANTITY) - SUM(REMOVE_FROM_CART_QUANTITY)) AS NET_QUANTITY_ADDED
-    FROM {{ref ('base_webschema_itemviews') }}
+    FROM {{ref ('int_clean_itemviews') }}
     GROUP BY SESSION_ID --@@@Calculate the changes in quantity during a single session.@@@
 ),
 order_cte AS (
