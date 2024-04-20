@@ -16,13 +16,13 @@ WITH OrderTimes AS (
     CASE 
         WHEN i.ITEM_VIEW_AT_TS BETWEEN o.EarliestOrderTime AND o.LatestOrderTime THEN o.LatestOrderTime
         ELSE i.ITEM_VIEW_AT_TS 
-    END AS AdjustedItemViewTime --@@Correct timestamp@@
+    END AS AdjustedItemViewTS --@@Correct timestamp@@
 FROM {{ref ('base_webschema_itemviews')}} AS i
 INNER JOIN OrderTimes o ON i.SESSION_ID = o.SESSION_ID
 WHERE i.SESSION_ID IN (SELECT SESSION_ID FROM OrderTimes))
     
 UNION
 
-(SELECT SESSION_ID, price_per_unit, remove_from_cart_quantity,item_name, add_to_cart_quantity, item_view_at_ts, item_view_at_ts ASAdjustedItemViewTime
+(SELECT SESSION_ID, price_per_unit, remove_from_cart_quantity,item_name, add_to_cart_quantity, item_view_at_ts, item_view_at_ts AS AdjustedItemViewTS
 FROM {{ref ('base_webschema_itemviews')}}
 WHERE SESSION_ID NOT IN (SELECT SESSION_ID FROM OrderTimes))
