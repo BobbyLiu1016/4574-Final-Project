@@ -19,4 +19,4 @@ FROM
 LEFT JOIN 
     {{ ref('int_item_aggre') }} i
 ON 
-    o.SESSION_ID = i.SESSION_ID AND DATE(o.ORDER_AT_TS) = i.ITEM_VIEW_AT_DATE
+    o.SESSION_ID = i.SESSION_ID AND DATE(o.ORDER_AT_TS) = i.adjusted_ITEM_VIEW_AT_DATE
