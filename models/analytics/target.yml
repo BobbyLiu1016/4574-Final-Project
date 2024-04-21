@@ -1,0 +1,34 @@
+models:
+  - name: daily_finances
+    description: Daily finances fact table. This includes daily revenue, expenses, and profit.
+    columns:
+      - name: date
+        description: The unique date 'YYYY-MM-DD'
+        tests:
+          - unique
+          - not_null
+      - name: daily_order_amt
+        description: Daily total order amount in dollars
+      - name: daily_shipping_cost
+        description: Daily total shipping cost in dollars
+      - name: daily_refund
+        description: Daily total refund amount in dollars by returned date
+      - name: daily_avg_salary
+        description: Daily average salary of total employees
+      - name: daily_profit
+        description: Daily profit deducting all expenses from revenue
+
+  - name: dim_item
+    description: The item dimensional table that includes item names and price per unit by each item and size.
+    columns:
+      - name: item_name
+        description: Item names
+      - name: price_per_unit
+        description: Price per unit
+      - name: item_price
+        description: Item name & unit price. There can be varying prices by size for a single item.
+      - name: item_no
+        tests:
+          - unique
+          - not_null
+        description: Unique number for each item_price.
