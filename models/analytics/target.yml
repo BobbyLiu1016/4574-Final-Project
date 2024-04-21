@@ -91,7 +91,7 @@ models:
       - name: ip
         description: client's ip address
 
-  - name: dim_fact_order
+  - name: fact_order
     description: The order dimensional table, each row summarzing the order information.
     columns:
       - name: client_name
