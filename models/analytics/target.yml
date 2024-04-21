@@ -4,7 +4,7 @@ models:
   - name: daily_finances
     description: Daily finances fact table. This includes daily revenue, expenses, and profit.
     columns:
-      - name: date
+      - name: _date
         description: The unique date 'YYYY-MM-DD'
         tests:
           - unique
