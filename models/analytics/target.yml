@@ -1,34 +1,64 @@
-models:
-  - name: daily_finances
-    description: Daily finances fact table. This includes daily revenue, expenses, and profit.
-    columns:
-      - name: date
-        description: The unique date 'YYYY-MM-DD'
-        tests:
-          - unique
-          - not_null
-      - name: daily_order_amt
-        description: Daily total order amount in dollars
-      - name: daily_shipping_cost
-        description: Daily total shipping cost in dollars
-      - name: daily_refund
-        description: Daily total refund amount in dollars by returned date
-      - name: daily_avg_salary
-        description: Daily average salary of total employees
-      - name: daily_profit
-        description: Daily profit deducting all expenses from revenue
+version: 2
 
-  - name: dim_item
-    description: The item dimensional table that includes item names and price per unit by each item and size.
-    columns:
-      - name: item_name
-        description: Item names
-      - name: price_per_unit
-        description: Price per unit
-      - name: item_price
-        description: Item name & unit price. There can be varying prices by size for a single item.
+models:
+  - name: daily_finances
+    description: Daily finances fact table. This includes daily revenue, expenses, and profit.
+    columns:
+      - name: date
+        description: The unique date 'YYYY-MM-DD'
+        tests:
+          - unique
+          - not_null
+      - name: daily_order_amt
+        description: Daily total order amount in dollars
+      - name: daily_shipping_cost
+        description: Daily total shipping cost in dollars
+      - name: daily_refund
+        description: Daily total refund amount in dollars by returned date
+      - name: daily_avg_salary
+        description: Daily average salary of total employees
+      - name: daily_profit
+        description: Daily profit deducting all expenses from revenue
+
+  - name: dim_item
+    description: The item dimensional table that includes item names and price per unit by each item and size.
+    columns:
+      - name: item_name
+        description: Item names
+      - name: price_per_unit
+        description: Price per unit
+      - name: item_price
+        description: Item name & unit price. There can be varying prices by size for a single item.
       - name: item_no
-        tests:
-          - unique
-          - not_null
-        description: Unique number for each item_price.
+        tests:
+          - unique
+          - not_null
+        description: Unique number for each item_price.
+
+  - name: fact_session
+    description: one row per session, summarizing its events
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null
+        description: Primary key to identify each session
+      - name: created_by_client
+        description: Client who initiates the current session is identified by their ID.
+      - name: session_at_ts
+        description: Client who initiates the current session is identified by their ID.
+      - name: ip
+        description: session's ip address
+      - name: os
+        description: session's os device
+      - name: visited_faq
+        description: Number of times the client visited the FAQ page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
+      - name: visited_cart
+        description: Number of times the client visited the cart page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
+      - name: visited_landing_page
+      - name: visited_plant_care
+      - name: visited_shop_plants
+      - name: total_quantity_added
+      - name: total_quantity_removed
+      - name: net_quantity_added
+      - name: has_order
