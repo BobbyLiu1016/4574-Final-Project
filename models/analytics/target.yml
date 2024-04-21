@@ -69,3 +69,24 @@ models:
         description: Net item quantity added during the current session
       - name: has_order
         description: Binary variable indicating whether an order was purchased during the current session (1 for yes, 0 for no).
+
+  - name: dim_client
+    description: The client table stores the information of each customer.
+    columns:
+      - name: client_id
+        tests:
+          - unique
+          - not_null
+        description: Primary key of each client
+      - name: client_name
+        description: the name of the client
+      - name: phone
+        description: client's phone number
+      - name: address
+        description: client's address
+      - name: state
+        description: client's state
+      - name: os
+        description: device used by client
+      - name: ip
+        description: client's ip address
