@@ -70,6 +70,7 @@ models:
       - name: has_order
         description: Binary variable indicating whether an order was purchased during the current session (1 for yes, 0 for no).
 
+<<<<<<< HEAD
   - name: dim_client
     description: The client table stores the information of each customer.
     columns:
@@ -90,3 +91,70 @@ models:
         description: device used by client
       - name: ip
         description: client's ip address
+=======
+  - name: dim_fact_order
+    description: The order dimensional table, each row summarzing the order information.
+    columns:
+      - name: client_name
+        description: Client names
+      - name: client_id_as_string
+        description: Client ID
+      - name: IP
+        description: IP of each order
+      - name: OS
+        description: OS of each order
+      - name: order_date
+        description: Date of order
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+        description: Id of each order
+      - name: session_id
+        description: Session id of each order
+      - name: aggregate_item
+        description: All the items in each order
+      - name: total_price
+        description: Total price of each order
+      - name: payment_info
+        description: Payment information
+      - name: payment_method
+        description: Method to pay
+      - name: phone
+        description: Phone number of each order
+      - name: shipping_address
+        description: Shipping address
+      - name: cleaned_shipping_cost
+        description: Shipping cost
+      - name: state
+        description: State of each order
+      - name: tax_rate
+        description: Tax rate applied to each order.
+
+  - name: dim_employee
+    description: The employee dimensional table, each row summarzing one employee information.
+    columns:
+      - name: employee_id
+        tests:
+          - unique
+          - not_null
+        description: ID of each employee
+      - name: name
+        description: Employee names
+      - name: city
+        description: The location of each employee works
+      - name: address
+        description: Address code of employee
+      - name: annual_salary
+        description: Annual salary of employees
+      - name: hire_date_cleaned
+        description: The date when employees get hired
+      - name: quit_date
+        description: The date when employees quit
+      - name: status
+        description: If employees are hired now
+      - name: days_employed
+        description: number of days that employees are hired. 
+
+      
+>>>>>>> 19416f2d9d9ecb6aacd7df2b703dbe6b3e3769fc
