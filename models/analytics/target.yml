@@ -70,7 +70,6 @@ models:
       - name: has_order
         description: Binary variable indicating whether an order was purchased during the current session (1 for yes, 0 for no).
 
-<<<<<<< HEAD
   - name: dim_client
     description: The client table stores the information of each customer.
     columns:
@@ -91,7 +90,7 @@ models:
         description: device used by client
       - name: ip
         description: client's ip address
-=======
+
   - name: dim_fact_order
     description: The order dimensional table, each row summarzing the order information.
     columns:
@@ -156,5 +155,3 @@ models:
       - name: days_employed
         description: number of days that employees are hired. 
 
-      
->>>>>>> 19416f2d9d9ecb6aacd7df2b703dbe6b3e3769fc
