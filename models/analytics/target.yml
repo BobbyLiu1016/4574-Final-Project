@@ -56,9 +56,16 @@ models:
       - name: visited_cart
         description: Number of times the client visited the cart page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
       - name: visited_landing_page
+        description: Number of times the client visited the landing page page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
       - name: visited_plant_care
+        description: Number of times the client visited the plant care page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
       - name: visited_shop_plants
+        description: Number of times the client visited the shop plants page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
       - name: total_quantity_added
+        description: Total quantity of items being added during the current session
       - name: total_quantity_removed
+        description: Total quantity of items being removed during the current session
       - name: net_quantity_added
+        description: Net item quantity added during the current session
       - name: has_order
+        description: Binary variable indicating whether an order was purchased during the current session (1 for yes, 0 for no).
