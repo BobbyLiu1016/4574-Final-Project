@@ -1,0 +1,157 @@
+version: 2
+
+models:
+  - name: daily_finances
+    description: Daily finances fact table. This includes daily revenue, expenses, and profit.
+    columns:
+      - name: _date
+        description: The unique date 'YYYY-MM-DD'
+        tests:
+          - unique
+          - not_null
+      - name: daily_order_amt
+        description: Daily total order amount in dollars
+      - name: daily_shipping_cost
+        description: Daily total shipping cost in dollars
+      - name: daily_refund
+        description: Daily total refund amount in dollars by returned date
+      - name: daily_avg_salary
+        description: Daily average salary of total employees
+      - name: daily_profit
+        description: Daily profit deducting all expenses from revenue
+
+  - name: dim_item
+    description: The item dimensional table that includes item names and price per unit by each item and size.
+    columns:
+      - name: item_name
+        description: Item names
+      - name: price_per_unit
+        description: Price per unit
+      - name: item_price
+        description: Item name & unit price. There can be varying prices by size for a single item.
+      - name: item_no
+        tests:
+          - unique
+          - not_null
+        description: Unique number for each item_price.
+
+  - name: fact_session
+    description: one row per session, summarizing its events
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null
+        description: Primary key to identify each session
+      - name: created_by_client
+        description: Client who initiates the current session is identified by their ID.
+      - name: session_at_ts
+        description: Client who initiates the current session is identified by their ID.
+      - name: ip
+        description: session's ip address
+      - name: os
+        description: session's os device
+      - name: visited_faq
+        description: Number of times the client visited the FAQ page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
+      - name: visited_cart
+        description: Number of times the client visited the cart page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
+      - name: visited_landing_page
+        description: Number of times the client visited the landing page page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
+      - name: visited_plant_care
+        description: Number of times the client visited the plant care page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
+      - name: visited_shop_plants
+        description: Number of times the client visited the shop plants page during the current session (1 indicates 'visited once', 2 indicates 'visited twice',...).
+      - name: total_quantity_added
+        description: Total quantity of items being added during the current session
+      - name: total_quantity_removed
+        description: Total quantity of items being removed during the current session
+      - name: net_quantity_added
+        description: Net item quantity added during the current session
+      - name: has_order
+        description: Binary variable indicating whether an order was purchased during the current session (1 for yes, 0 for no).
+
+  - name: dim_client
+    description: The client table stores the information of each customer.
+    columns:
+      - name: client_id
+        tests:
+          - unique
+          - not_null
+        description: Primary key of each client
+      - name: client_name
+        description: the name of the client
+      - name: phone
+        description: client's phone number
+      - name: address
+        description: client's address
+      - name: state
+        description: client's state
+      - name: os
+        description: device used by client
+      - name: ip
+        description: client's ip address
+
+  - name: fact_order
+    description: The order dimensional table, each row summarzing the order information.
+    columns:
+      - name: client_name
+        description: Client names
+      - name: client_id_as_string
+        description: Client ID
+      - name: IP
+        description: IP of each order
+      - name: OS
+        description: OS of each order
+      - name: order_date
+        description: Date of order
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+        description: Id of each order
+      - name: session_id
+        description: Session id of each order
+      - name: aggregate_item
+        description: All the items in each order
+      - name: total_price
+        description: Total price of each order
+      - name: payment_info
+        description: Payment information
+      - name: payment_method
+        description: Method to pay
+      - name: phone
+        description: Phone number of each order
+      - name: shipping_address
+        description: Shipping address
+      - name: cleaned_shipping_cost
+        description: Shipping cost
+      - name: state
+        description: State of each order
+      - name: tax_rate
+        description: Tax rate applied to each order.
+
+  - name: dim_employee
+    description: The employee dimensional table, each row summarzing one employee information.
+    columns:
+      - name: employee_id
+        tests:
+          - unique
+          - not_null
+        description: ID of each employee
+      - name: name
+        description: Employee names
+      - name: city
+        description: The location of each employee works
+      - name: address
+        description: Address code of employee
+      - name: annual_salary
+        description: Annual salary of employees
+      - name: hire_date_cleaned
+        description: The date when employees get hired
+      - name: quit_date
+        description: The date when employees quit
+      - name: status
+        description: If employees are hired now
+      - name: days_employed
+        description: number of days that employees are hired. 
+
